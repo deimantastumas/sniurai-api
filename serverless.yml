@@ -33,13 +33,6 @@ provider:
       Resource: "arn:aws:dynamodb:us-east-2:*:*"
 
 functions:
-  hello:
-    handler: handler.hello
-    events:
-      - http:
-          path: hello
-          method: get
-
   create:
     handler: create.main
     events:
@@ -53,10 +46,10 @@ functions:
     handler: get.main
     events:
       - http:
-        path: notes/{id}
-        method: get
-        cors: true
-        authorizer: aws_iam
+          path: notes/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
 
   update:
     handler: update.main
@@ -94,5 +87,5 @@ functions:
           cors: true
           authorizer: aws_iam
 
-  resources:
-    - ${file(resources/api-gateway-errors.yml)}
+resources:
+  - ${file(resources/api-gateway-errors.yml)}
